@@ -20,10 +20,24 @@ function calcular(tipo, valor) {
             document.getElementById("tela").value = valorDisplay;
             historico.innerHTML += "<p>" + expressao + " = " + valorDisplay + "</p>";
             expressao = valorDisplay;
+            document.getElementById("botaoLimpar").style.display = "block";
         }
 
     } else {
         document.getElementById("tela").value += valor;
         expressao += valor;
     }
+
+
+}
+
+function limparHistorico() {
+
+    historico.innerHTML = "";
+
+    if (historico.innerHTML === "") {
+        document.getElementById("botaoLimpar").style.display = "none";
+    }
+
+
 }

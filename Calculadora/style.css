@@ -77,3 +77,11 @@
     overflow-y: auto;
     max-height: 200px;
 }
+
+#botaoLimpar{
+    width: 100%;
+    height: auto;
+    text-align: center;
+    font-size: 12px;
+    color: white;
+}
