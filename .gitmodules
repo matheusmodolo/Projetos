@@ -1,0 +1,6 @@
+[submodule "Projetos-Curso-DomineWEB-Udemy"]
+	path = Projetos-Curso-DomineWEB-Udemy
+	url = https://github.com/matheusmodolo/Projetos-Curso-DomineWEB-Udemy
+[submodule "Projetos-Curso-Serfrontend-Udemy"]
+	path = Projetos-Curso-Serfrontend-Udemy
+	url = https://github.com/matheusmodolo/Projetos-Curso-Serfrontend-Udemy
