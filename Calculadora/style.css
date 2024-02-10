@@ -27,7 +27,7 @@
     background-color: #555;
     color: #fff;
     cursor: pointer;
-    transition: background-color 0.5s ease;
+    transition: all 0.5s ease;
 }
 
 .btn:hover {
@@ -36,15 +36,32 @@
 
 .btn:active {
     background-color: #333;
+    transform: scale(0.95);
+    transition: transform 0.1s;
 }
 
+.btn-number {
+    background-color: #444;
+}
+
+.btn-number:hover {
+    background-color: #777;
+}
+
+.btn-number:active {
+    background-color: #222;
+    transform: scale(0.95);
+    transition: transform 0.1s;
+}
+
+
 .clear {
-    background-color: #4a4a4a;
+    background-color: #666;
     width: 130px;
 }
 
 .enter {
-    background-color: #464646;
+    background-color: #666;
     height: 110px;
 }
 
@@ -61,6 +78,7 @@
     box-shadow: 1px 1px 3px inset black;
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
+    
 
 }
 
@@ -76,6 +94,7 @@
     text-align: left;
     overflow-y: auto;
     max-height: 200px;
+    transition: all 1s ease-out;
 }
 
 #botaoLimpar{

@@ -83,7 +83,12 @@ function calcular(tipo, valor) {
         if (valor === "=") {
             var valorDisplay = eval(document.getElementById("tela").value);
             document.getElementById("tela").value = valorDisplay;
-            historico.innerHTML += "<p>" + expressao + " = " + valorDisplay + "</p>";
+            // historico.innerHTML += "<p>" + expressao + " = " + valorDisplay + "</p>";
+            
+
+            var novaEntrada = document.createElement("p");
+            novaEntrada.innerHTML = expressao + " = " + valorDisplay;
+            historico.insertBefore(novaEntrada, historico.firstChild);
 
             //expressao = valorDisplay;
             expressao = document.getElementById("tela").value;

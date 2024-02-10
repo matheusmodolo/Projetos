@@ -10,6 +10,8 @@
             integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
             crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Orbitron">
 
     </head>
     <body style="background: #D9D9D9" onkeydown="teclado(event)">
@@ -38,13 +40,13 @@
                         <div class="row">
                             <button onclick="calcular('valor', 7)"
                                 type="button"
-                                class="btn btn-dark btn-lg font-weight-light">7</button>
+                                class="btn btn-dark btn-lg font-weight-light btn-number">7</button>
                             <button onclick="calcular('valor', 8)"
                                 type="button"
-                                class="btn btn-dark btn-lg font-weight-light">8</button>
+                                class="btn btn-dark btn-lg font-weight-light btn-number">8</button>
                             <button onclick="calcular('valor', 9)"
                                 type="button"
-                                class="btn btn-dark btn-lg font-weight-light">9</button>
+                                class="btn btn-dark btn-lg font-weight-light btn-number">9</button>
                             <button onclick="calcular('acao', '-')"
                                 type="button"
                                 class="btn btn-dark btn-lg font-weight-light">-</button>
@@ -53,13 +55,13 @@
                         <div class="row">
                             <button onclick="calcular('valor', 4)"
                                 type="button"
-                                class="btn btn-dark btn-lg font-weight-light">4</button>
+                                class="btn btn-dark btn-lg font-weight-light btn-number">4</button>
                             <button onclick="calcular('valor', 5)"
                                 type="button"
-                                class="btn btn-dark btn-lg font-weight-light">5</button>
+                                class="btn btn-dark btn-lg font-weight-light btn-number">5</button>
                             <button onclick="calcular('valor', 6)"
                                 type="button"
-                                class="btn btn-dark btn-lg font-weight-light">6</button>
+                                class="btn btn-dark btn-lg font-weight-light btn-number">6</button>
                             <button onclick="calcular('acao', '+')"
                                 type="button"
                                 class="btn btn-dark btn-lg font-weight-light">+</button>
@@ -68,13 +70,13 @@
                         <div class="row">
                             <button onclick="calcular('valor', 1)"
                                 type="button"
-                                class="btn btn-dark btn-lg font-weight-light">1</button>
+                                class="btn btn-dark btn-lg font-weight-light btn-number">1</button>
                             <button onclick="calcular('valor', 2)"
                                 type="button"
-                                class="btn btn-dark btn-lg font-weight-light">2</button>
+                                class="btn btn-dark btn-lg font-weight-light btn-number">2</button>
                             <button onclick="calcular('valor', 3)"
                                 type="button"
-                                class="btn btn-dark btn-lg font-weight-light">3</button>
+                                class="btn btn-dark btn-lg font-weight-light btn-number">3</button>
                             <button onclick="calcular('acao', '=')"
                                 type="button"
                                 class="btn btn-dark btn-lg enter">=</button>
@@ -83,17 +85,17 @@
                         <div class="row" style="margin-top: -60px">
                             <button onclick="calcular('valor', 0)"
                                 type="button"
-                                class="btn btn-dark zero btn-lg font-weight-light">0</button>
+                                class="btn btn-dark zero btn-lg font-weight-light btn-number">0</button>
                             <button onclick="calcular('acao', '.')"
                                 type="button"
-                                class="btn btn-dark btn-lg font-weight-light">.</button>
+                                class="btn btn-dark btn-lg font-weight-light btn-number">.</button>
                         </div>
 
                         <div id="historico"></div>
 
                         <button onclick="limparHistorico()"
                             type="button" id="botaoLimpar"
-                            class="btn" style="display: none;">Apagar
+                            class="btn" style="display: none;">Limpar
                             Histórico</button>
 
                     </div>
