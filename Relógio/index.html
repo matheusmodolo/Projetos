@@ -1,83 +1,261 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>Relógio</title>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Relógio e Cronômetro</title>
     <style>
-        
-        body {
-            background-color: #282C34;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            color: white;
-            font-family: 'Courier New', monospace;
-        }
-        
-        #relogio {
-            font-size: 80px;
-            text-align: center;
-        }
-        
-        #milissegundos {
-            font-size: 40px;
-            display: inline;
-            margin-left: 10px;
-        }
-        
-        #data {
-            font-size: 30px;
-            text-align: center;
-        }
+      body {
+        background-color: #282c34;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        color: white;
+        font-family: "Courier New", monospace;
+      }
+
+      .tabs {
+        display: flex;
+        justify-content: center;
+        width: 50%;
+      }
+
+      .tab-button {
+        flex: 1;
+        padding: 15px 0;
+        cursor: pointer;
+        font-size: 20px;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.76);
+        background-color: #282c34;
+        border-radius: 5px;
+        border: none;
+        outline: none;
+      }
+
+      .tab-button.active {
+        background-color: #00000010;
+        color: white;
+      }
+
+      .tab {
+        display: none;
+        width: 100%;
+        text-align: center;
+        margin-top: 15%;
+      }
+
+      .tab.active {
+        display: block;
+      }
+
+      #relogio {
+        font-size: 80px;
+      }
+
+      #milissegundos {
+        font-size: 40px;
+        margin-left: 10px;
+      }
+
+      #milissegundos2 {
+        font-size: 40px;
+        margin-left: 10px;
+      }
+
+      #data {
+        font-size: 30px;
+      }
+
+      #cronometro {
+        font-size: 80px;
+        margin: 20px 0;
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 20px;
+        margin: 10px;
+        cursor: pointer;
+        color: #282c34;
+        border: none;
+        outline: none;
+        transition: all 0.4s ease;
+      }
+
+      button:hover {
+        color: white;
+        background-color: #0000000a;
+      }
+
+      .button-cronometro {
+        background-color: #ffffff0a;
+        color: rgba(255, 255, 255, 0.76);
+        border-radius: 5px;
+        text-align: center;
+        align-items: center;
+      }
+
+      .button-cronometro:hover {
+        background-color: #ffffff3a;
+        color: white;
+      }
     </style>
-</head>
-<body>
-    <div>
-        <div>
-            <span id="relogio"></span> <!-- Elemento para exibir a hora -->
-            <span id="milissegundos"></span> <!-- Elemento para exibir os milissegundos -->
-        </div>
-        <div id="data"></div> <!-- Elemento para exibir a data -->
+  </head>
+  <body>
+    <div class="tabs">
+      <button class="tab-button active" onclick="showTab('relogio-tab')">
+        Relógio
+      </button>
+      <button class="tab-button" onclick="showTab('cronometro-tab')">
+        Cronômetro
+      </button>
+    </div>
+
+    <div id="relogio-tab" class="tab active">
+      <div>
+        <span id="relogio"></span>
+        <span id="milissegundos"></span>
+      </div>
+      <div id="data"></div>
+    </div>
+
+    <div id="cronometro-tab" class="tab">
+      <div id="cronometro">00:00 000</div>
+      <button class="button-cronometro" onclick="startCronometro()">⏵</button>
+      <button class="button-cronometro" onclick="stopCronometro()">⏸</button>
+      <button class="button-cronometro" onclick="resetCronometro()">⏹</button>
     </div>
 
     <script>
-        /* Função para atualizar o relógio */
-        function atualizarRelogio() {
-            var agora = new Date();
-            var horas = agora.getHours();
-            var minutos = agora.getMinutes();
-            var segundos = agora.getSeconds();
-            var milissegundos = agora.getMilliseconds();
-            var dia = agora.getDate();
-            var mes = agora.getMonth() + 1; /* (os meses começam do 0, então adicionamos 1) */
-            var ano = agora.getFullYear();
+      /* Função para atualizar o relógio */
+      function atualizarRelogio() {
+        var agora = new Date();
+        var horas = agora.getHours();
+        var minutos = agora.getMinutes();
+        var segundos = agora.getSeconds();
+        var milissegundos = agora.getMilliseconds();
+        var dia = agora.getDate();
+        var mes =
+          agora.getMonth() +
+          1; /* (os meses começam do 0, então adicionamos 1) */
+        var ano = agora.getFullYear();
 
-            /* Adiciona um zero à esquerda se as horas, minutos ou segundos forem menores que 10 */
-            horas = horas < 10 ? "0" + horas : horas;
-            minutos = minutos < 10 ? "0" + minutos : minutos;
-            segundos = segundos < 10 ? "0" + segundos : segundos;
+        /* Adiciona um zero à esquerda se as horas, minutos ou segundos forem menores que 10 */
+        horas = horas < 10 ? "0" + horas : horas;
+        minutos = minutos < 10 ? "0" + minutos : minutos;
+        segundos = segundos < 10 ? "0" + segundos : segundos;
 
-            /* Formata os milissegundos para sempre exibir três dígitos */
-            milissegundos = milissegundos < 10 ? "00" + milissegundos : milissegundos < 100 ? "0" + milissegundos : milissegundos;
+        /* Formata os milissegundos para sempre exibir três dígitos */
+        milissegundos =
+          milissegundos < 10
+            ? "00" + milissegundos
+            : milissegundos < 100
+            ? "0" + milissegundos
+            : milissegundos;
 
-            var tempo = horas + ":" + minutos + ":" + segundos; /* Formata a hora */
+        var tempo = horas + ":" + minutos + ":" + segundos; /* Formata a hora */
 
-            /* Array com os nomes dos meses em português */
-            var nomesDosMeses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
-            var nomeDoMes = nomesDosMeses[mes - 1]; /* Obtém o nome do mês */
+        /* Array com os nomes dos meses em português */
+        var nomesDosMeses = [
+          "Janeiro",
+          "Fevereiro",
+          "Março",
+          "Abril",
+          "Maio",
+          "Junho",
+          "Julho",
+          "Agosto",
+          "Setembro",
+          "Outubro",
+          "Novembro",
+          "Dezembro",
+        ];
+        var nomeDoMes = nomesDosMeses[mes - 1]; /* Obtém o nome do mês */
 
-            var data = dia + " de " + nomeDoMes + " de " + ano; /* Formata a data */
+        var data = dia + " de " + nomeDoMes + " de " + ano; /* Formata a data */
 
-            /* Atualiza os elementos na página com a hora, milissegundos e data formatados */
-            document.getElementById('relogio').innerText = tempo;
-            document.getElementById('milissegundos').innerText = milissegundos;
-            document.getElementById('data').innerText = data;
+        /* Atualiza os elementos na página com a hora, milissegundos e data formatados */
+        document.getElementById("relogio").innerText = tempo;
+        document.getElementById("milissegundos").innerText = milissegundos;
+        document.getElementById("data").innerText = data;
+      }
+
+      /* Chama a função atualizarRelogio a cada 1 milissegundo */
+      setInterval(atualizarRelogio, 1);
+
+      /* Funções para alternar entre as abas */
+      function showTab(tabId) {
+        var tabs = document.getElementsByClassName("tab");
+        var buttons = document.getElementsByClassName("tab-button");
+        for (var i = 0; i < tabs.length; i++) {
+          tabs[i].classList.remove("active");
+          buttons[i].classList.remove("active");
+        }
+        document.getElementById(tabId).classList.add("active");
+        document
+          .querySelector("[onclick=\"showTab('" + tabId + "')\"]")
+          .classList.add("active");
+      }
+
+      /* Variáveis do cronômetro */
+      var cronometroInterval;
+      var startTime;
+      var elapsedTime = 0;
+
+      function startCronometro() {
+        if (!cronometroInterval) {
+          startTime = Date.now() - elapsedTime;
+          cronometroInterval = setInterval(updateCronometro, 1);
+        }
+      }
+
+      function stopCronometro() {
+        clearInterval(cronometroInterval);
+        cronometroInterval = null;
+      }
+
+      function resetCronometro() {
+        stopCronometro();
+        elapsedTime = 0;
+        document.getElementById("cronometro").innerText = "00:00.000";
+      }
+
+      function updateCronometro() {
+        elapsedTime = Date.now() - startTime;
+        var horas = Math.floor(elapsedTime / (60 * 60 * 1000));
+        var minutos = Math.floor(
+          (elapsedTime % (60 * 60 * 1000)) / (60 * 1000)
+        );
+        var segundos = Math.floor((elapsedTime % (60 * 1000)) / 1000);
+        var milissegundos = elapsedTime % 1000;
+
+        /* Adiciona um zero à esquerda se as horas, minutos ou segundos forem menores que 10 */
+        horas = horas < 10 ? "0" + horas : horas;
+        minutos = minutos < 10 ? "0" + minutos : minutos;
+        segundos = segundos < 10 ? "0" + segundos : segundos;
+
+        /* Formata os milissegundos para sempre exibir três dígitos */
+        milissegundos =
+          milissegundos < 10
+            ? "00" + milissegundos
+            : milissegundos < 100
+            ? "0" + milissegundos
+            : milissegundos;
+
+        var tempo = segundos + "." + milissegundos;
+
+        if (minutos > 0) {
+          tempo = minutos + ":" + tempo;
         }
 
-        /* Chama a função atualizarRelogio a cada 1 milissegundo */
-        setInterval(atualizarRelogio, 1);
+        if (horas > 0) {
+          tempo = horas + ":" + tempo;
+        }
+
+        document.getElementById("cronometro").innerText = tempo;
+      }
     </script>
-</body>
+  </body>
 </html>
